@@ -15,8 +15,8 @@ const Todos = () => {
     // 2. Defining a function to get todos...
     const getTodos = async () => {
         // use axioms to get todos
-        const response = await axios.get('https://todo-api-i7c7.onrender.com/todos');
-        console.log(response.data)
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/todos?limit=0`);
+        console.table(response.data)
         // update todo state
         setTodos(response.data);
     }
@@ -25,13 +25,13 @@ const Todos = () => {
     useEffect(() => {
         getTodos();
     }, []);
-
+//3724
     return (
         <div>
             <h1>All todo's go here...</h1>
             <div>
                 {todos.map((todo) => {
-                    return <TodoTile title={todo.title} key={todo._id}/>
+                    return <TodoTile title={todo.title} key={todo._id} icon={todo.icon} />
                 })}
                 {/* <TodoTile title={'Try 2'} />
                 <TodoTile title={'Try 3'} />
